@@ -28,10 +28,10 @@ int main() {
             y[i] = rand() % 10;
         }
 	
-	printf("x: ");
+	    printf("x: ");
         printArray(x, n);
 
-	printf("y: ");
+	    printf("y: ");
         printArray(y, n);
 
         for (int i = 1; i < size; i++) {
@@ -44,23 +44,23 @@ int main() {
         for (int i = 1; i < size; i++) {
             MPI_Recv(z + (n / (size - 1)) * (i - 1), n / (size - 1), MPI_INT, i, 33, MPI_COMM_WORLD, &status);
         }
-	printf("Addition: ");
+	    printf("Addition: ");
         printArray(z, n);
 
-	for (int i = 1; i < size; i++) {
-            MPI_Recv(z + (n / (size - 1)) * (i - 1), n / (size - 1), MPI_INT, i, 33, MPI_COMM_WORLD, &status);
-	}
-	printf("Multiplication: ");
-	printArray(z, n);
+    	for (int i = 1; i < size; i++) {
+                MPI_Recv(z + (n / (size - 1)) * (i - 1), n / (size - 1), MPI_INT, i, 33, MPI_COMM_WORLD, &status);
+    	}
+    	printf("Multiplication: ");
+    	printArray(z, n);
 
-	for (int i = 1; i < size; i++) {
-	    MPI_Recv(x + (n / (size - 1)) * (i - 1), n / (size - 1), MPI_INT, i, 33, MPI_COMM_WORLD, &status);
-	    MPI_Recv(y + (n / (size - 1)) * (i - 1), n / (size - 1), MPI_INT, i, 33, MPI_COMM_WORLD, &status);
-	}
-	printf("x: ");
-	printArray(x, n);
-	printf("y: ");
-	printArray(y, n);
+    	for (int i = 1; i < size; i++) {
+    	    MPI_Recv(x + (n / (size - 1)) * (i - 1), n / (size - 1), MPI_INT, i, 33, MPI_COMM_WORLD, &status);
+    	    MPI_Recv(y + (n / (size - 1)) * (i - 1), n / (size - 1), MPI_INT, i, 33, MPI_COMM_WORLD, &status);
+    	}
+    	printf("x: ");
+    	printArray(x, n);
+    	printf("y: ");
+    	printArray(y, n);
     } else {
         MPI_Probe(0, 33, MPI_COMM_WORLD, &status);
 
@@ -78,11 +78,11 @@ int main() {
         addition(x, y, z, amount);
         MPI_Send(z, amount, MPI_INT, 0, 33, MPI_COMM_WORLD);
 
-	multiplication(x, y, z, amount);
-	MPI_Send(z, amount, MPI_INT, 0, 33, MPI_COMM_WORLD);
+    	multiplication(x, y, z, amount);
+    	MPI_Send(z, amount, MPI_INT, 0, 33, MPI_COMM_WORLD);
 
-	MPI_Send(y, amount, MPI_INT, 0, 33, MPI_COMM_WORLD);
-	MPI_Send(x, amount, MPI_INT, 0, 33, MPI_COMM_WORLD);
+    	MPI_Send(y, amount, MPI_INT, 0, 33, MPI_COMM_WORLD);
+    	MPI_Send(x, amount, MPI_INT, 0, 33, MPI_COMM_WORLD);
     }
     return 0;
 }
