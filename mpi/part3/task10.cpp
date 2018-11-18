@@ -31,4 +31,8 @@ int main() {
     if (rank == root) {
         printf("Global sum: %d.\n", globalSum);
     }
+
+    MPI_Finalize();
+
+    return 0;
 }
